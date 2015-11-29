@@ -26,6 +26,11 @@
 		802C84201BDDA57B007D775B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802C841F1BDDA57B007D775B /* ViewController.swift */; };
 		80531D491BDB277000C054BE /* KnowYourProfessorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80531D481BDB277000C054BE /* KnowYourProfessorController.swift */; };
 		80531D4B1BDB2D6400C054BE /* KnowYourProfessorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80531D4A1BDB2D6400C054BE /* KnowYourProfessorDetails.swift */; };
+		808A32FF1C0BC07A009929CD /* PostBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A32FA1C0BC07A009929CD /* PostBooksViewController.swift */; };
+		808A33001C0BC07A009929CD /* BooksTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A32FB1C0BC07A009929CD /* BooksTableCellModel.swift */; };
+		808A33011C0BC07A009929CD /* BooksTableControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A32FC1C0BC07A009929CD /* BooksTableControllerCell.swift */; };
+		808A33021C0BC07A009929CD /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A32FD1C0BC07A009929CD /* BooksViewController.swift */; };
+		808A33031C0BC07A009929CD /* RestCall1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A32FE1C0BC07A009929CD /* RestCall1.swift */; };
 		80AC77591BB343AE004E050C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AC77581BB343AE004E050C /* AppDelegate.swift */; };
 		80AC775B1BB343AE004E050C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AC775A1BB343AE004E050C /* RootViewController.swift */; };
 		80AC775D1BB343AE004E050C /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AC775C1BB343AE004E050C /* DataViewController.swift */; };
@@ -69,6 +74,11 @@
 		802C841F1BDDA57B007D775B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80531D481BDB277000C054BE /* KnowYourProfessorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowYourProfessorController.swift; sourceTree = "<group>"; };
 		80531D4A1BDB2D6400C054BE /* KnowYourProfessorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnowYourProfessorDetails.swift; sourceTree = "<group>"; };
+		808A32FA1C0BC07A009929CD /* PostBooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBooksViewController.swift; sourceTree = "<group>"; };
+		808A32FB1C0BC07A009929CD /* BooksTableCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableCellModel.swift; sourceTree = "<group>"; };
+		808A32FC1C0BC07A009929CD /* BooksTableControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableControllerCell.swift; sourceTree = "<group>"; };
+		808A32FD1C0BC07A009929CD /* BooksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
+		808A32FE1C0BC07A009929CD /* RestCall1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestCall1.swift; sourceTree = "<group>"; };
 		80AC77551BB343AE004E050C /* NJIT Student Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NJIT Student Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AC77581BB343AE004E050C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80AC775A1BB343AE004E050C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +157,11 @@
 				047761941BC9BB4A00D98830 /* AcademicListViewController.swift */,
 				D152E3C11C08FF0700863D7C /* BroadcastCell.swift */,
 				D152E3BF1C08F72C00863D7C /* BroadcastViewController.swift */,
+				808A32FA1C0BC07A009929CD /* PostBooksViewController.swift */,
+				808A32FB1C0BC07A009929CD /* BooksTableCellModel.swift */,
+				808A32FC1C0BC07A009929CD /* BooksTableControllerCell.swift */,
+				808A32FD1C0BC07A009929CD /* BooksViewController.swift */,
+				808A32FE1C0BC07A009929CD /* RestCall1.swift */,
 				04D9A16B1BC4AA13004B5A5C /* AcademicCalendarTableViewController.swift */,
 				D408EE5F1BDC3678009DB12C /* RestCall.swift */,
 				D4FD26611BDDC53E00A7F3F3 /* PostLostItemViewController.swift */,
@@ -213,7 +228,7 @@
 				TargetAttributes = {
 					80AC77541BB343AE004E050C = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 3B7C99N489;
+						DevelopmentTeam = F48ZTW93WJ;
 					};
 				};
 			};
@@ -264,6 +279,7 @@
 				80AC775B1BB343AE004E050C /* RootViewController.swift in Sources */,
 				D152E3C21C08FF0700863D7C /* BroadcastCell.swift in Sources */,
 				D152E3BE1C07C7B200863D7C /* GetPredictions.swift in Sources */,
+				808A33031C0BC07A009929CD /* RestCall1.swift in Sources */,
 				0431AC821BEA850C00131AEC /* ShuttleMapViewController.swift in Sources */,
 				D152E3C41C09074200863D7C /* BroadcastInfoViewController.swift in Sources */,
 				0435F1721BC4D703004B12F0 /* EurekaViewController.swift in Sources */,
@@ -272,14 +288,18 @@
 				D4D285941BE06814007F3930 /* toDoModel.xcdatamodeld in Sources */,
 				70AFC5321BDC344C0029FF09 /* ContactViewController.swift in Sources */,
 				D4D2859A1BE06917007F3930 /* toDoPersist.swift in Sources */,
+				808A33011C0BC07A009929CD /* BooksTableControllerCell.swift in Sources */,
+				808A32FF1C0BC07A009929CD /* PostBooksViewController.swift in Sources */,
 				70AFC5341BDC36B70029FF09 /* ContactCellControl.swift in Sources */,
 				B7FED5911BB6449F00F3FEB8 /* AtheleticViewController.swift in Sources */,
 				04E283E01C0667CF00450A05 /* Station.swift in Sources */,
 				70AFC5301BDC18FB0029FF09 /* VectorViewController.swift in Sources */,
+				808A33001C0BC07A009929CD /* BooksTableCellModel.swift in Sources */,
 				0435F17C1BC4E631004B12F0 /* EurekaTableCellModel.swift in Sources */,
 				04E283E21C0667ED00450A05 /* ShuttleStopSelectViewController.swift in Sources */,
 				047761951BC9BB4A00D98830 /* AcademicListViewController.swift in Sources */,
 				80AC775F1BB343AE004E050C /* ModelController.swift in Sources */,
+				808A33021C0BC07A009929CD /* BooksViewController.swift in Sources */,
 				0435F17A1BC4E27D004B12F0 /* EurekaTableControllerCell.swift in Sources */,
 				D4D285981BE0684F007F3930 /* ToDoModel.swift in Sources */,
 				80AC775D1BB343AE004E050C /* DataViewController.swift in Sources */,
@@ -407,7 +427,7 @@
 				INFOPLIST_FILE = "NJIT Student Guide/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "balki.NJIT-Student-Guide";
+				PRODUCT_BUNDLE_IDENTIFIER = "arif.NJIT-Student-Guide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -422,7 +442,7 @@
 				INFOPLIST_FILE = "NJIT Student Guide/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "balki.NJIT-Student-Guide";
+				PRODUCT_BUNDLE_IDENTIFIER = "arif.NJIT-Student-Guide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
