@@ -18,6 +18,7 @@
 		0435F17C1BC4E631004B12F0 /* EurekaTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435F17B1BC4E631004B12F0 /* EurekaTableCellModel.swift */; };
 		0468EE831BC320010032AC7D /* DateSelectAtheleticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0468EE821BC320010032AC7D /* DateSelectAtheleticViewController.swift */; };
 		047761951BC9BB4A00D98830 /* AcademicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047761941BC9BB4A00D98830 /* AcademicListViewController.swift */; };
+		0492F4591C0BCF2F0038AC0A /* Screenshot 2015-11-29 03.32.51.png in Resources */ = {isa = PBXBuildFile; fileRef = 0492F4581C0BCF2F0038AC0A /* Screenshot 2015-11-29 03.32.51.png */; };
 		04D9A16C1BC4AA13004B5A5C /* AcademicCalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D9A16B1BC4AA13004B5A5C /* AcademicCalendarTableViewController.swift */; };
 		04E283E01C0667CF00450A05 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E283DF1C0667CF00450A05 /* Station.swift */; };
 		04E283E21C0667ED00450A05 /* ShuttleStopSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E283E11C0667ED00450A05 /* ShuttleStopSelectViewController.swift */; };
@@ -70,6 +71,7 @@
 		0435F17B1BC4E631004B12F0 /* EurekaTableCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EurekaTableCellModel.swift; sourceTree = "<group>"; };
 		0468EE821BC320010032AC7D /* DateSelectAtheleticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectAtheleticViewController.swift; sourceTree = "<group>"; };
 		047761941BC9BB4A00D98830 /* AcademicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcademicListViewController.swift; sourceTree = "<group>"; };
+		0492F4581C0BCF2F0038AC0A /* Screenshot 2015-11-29 03.32.51.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2015-11-29 03.32.51.png"; sourceTree = "<group>"; };
 		04D9A16B1BC4AA13004B5A5C /* AcademicCalendarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcademicCalendarTableViewController.swift; sourceTree = "<group>"; };
 		04E283DF1C0667CF00450A05 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		04E283E11C0667ED00450A05 /* ShuttleStopSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShuttleStopSelectViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				D4D285961BE0684F007F3930 /* ToDoModel.swift */,
 				70AFC5331BDC36B70029FF09 /* ContactCellControl.swift */,
 				702FDFCF1BE04BE60005056A /* TestInternet.swift */,
+				0492F4581C0BCF2F0038AC0A /* Screenshot 2015-11-29 03.32.51.png */,
 				70AFC52B1BDC18FB0029FF09 /* VectorControllerCell.swift */,
 				70AFC52C1BDC18FB0029FF09 /* VectorDetailControl.swift */,
 				70AFC52D1BDC18FB0029FF09 /* VectorViewController.swift */,
@@ -267,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0492F4591C0BCF2F0038AC0A /* Screenshot 2015-11-29 03.32.51.png in Resources */,
 				80AC77671BB343AE004E050C /* LaunchScreen.storyboard in Resources */,
 				80AC77641BB343AE004E050C /* Assets.xcassets in Resources */,
 				80AC77621BB343AE004E050C /* Main.storyboard in Resources */,
