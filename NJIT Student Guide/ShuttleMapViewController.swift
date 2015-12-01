@@ -136,7 +136,7 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
         
         let location = CLLocationCoordinate2D(latitude: 40.743193, longitude: -74.178550)
         
-        let region = MKCoordinateRegionMakeWithDistance(location, 30000.0, 30000.0)
+        let region = MKCoordinateRegionMakeWithDistance(location, 3000.0, 3000.0)
         
         myMap.setRegion(region, animated: true)
     }

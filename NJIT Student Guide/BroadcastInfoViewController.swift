@@ -17,7 +17,7 @@ class BroadcastInfoViewController: UIViewController {
     var tim = String()
     var from = String()
     @IBOutlet weak var titlelbl: UILabel!
-    @IBOutlet weak var msglbl: UILabel!
+    @IBOutlet weak var msglbl: UITextView!
     @IBOutlet weak var datelbl: UILabel!
     @IBOutlet weak var timelbl: UILabel!
     @IBOutlet weak var fromlbl: UILabel!
@@ -55,8 +55,27 @@ class BroadcastInfoViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), {
                    self.titlelbl.text = self.tit
                     self.msglbl.text = self.msg
-                    self.datelbl.text = self.dt
-                    self.timelbl.text = self.tim
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    let tempdt = dateFormatter.dateFromString(self.dt)
+                    print(tempdt)
+                    let dtfm = NSDateFormatter()
+                    dtfm.dateStyle = .MediumStyle
+                    let tmpdt1 = dtfm.stringFromDate(tempdt!)
+                    print(tmpdt1)
+                    self.datelbl.text = tmpdt1
+              
+                    let timeFormatter = NSDateFormatter()
+                    timeFormatter.dateFormat = "HH:mm:ss"
+                    let tmptm = timeFormatter.dateFromString(self.tim)
+                    print(tmptm)
+                    let tmfm = NSDateFormatter()
+                    tmfm.timeStyle = .ShortStyle
+                    let tmptm1 = tmfm.stringFromDate(tmptm!)
+                    print(tmptm1)
+                    
+                    self.timelbl.text = tmptm1
                     self.fromlbl.text = self.from
                 });
                 print(json)
