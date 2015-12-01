@@ -611,7 +611,7 @@
         <!--Student Guide-->
         <scene sceneID="eUP-MV-lAu">
             <objects>
-                <viewController title="Student Guide" id="FPO-iM-2Kr" sceneMemberID="viewController">
+                <viewController title="Student Guide" id="FPO-iM-2Kr" customClass="StudentSceneViewController" customModule="NJIT_Student_Guide" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6qZ-Vo-IAU"/>
                         <viewControllerLayoutGuide type="bottom" id="Cd8-mt-d3g"/>
@@ -624,6 +624,9 @@
                                 <rect key="frame" x="213" y="311" width="176" height="104"/>
                                 <animations/>
                                 <state key="normal" backgroundImage="building1X-1"/>
+                                <connections>
+                                    <action selector="OpenWhatsThatBuilding:" destination="FPO-iM-2Kr" eventType="touchUpInside" id="cnT-Dh-6nq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9w-YY-bfs">
                                 <rect key="frame" x="397" y="311" width="176" height="104"/>

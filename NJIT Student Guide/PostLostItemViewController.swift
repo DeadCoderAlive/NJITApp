@@ -18,6 +18,8 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
     @IBOutlet weak var ItemName: UITextField!
     @IBOutlet weak var userName: UITextField!
     var url = NSURL(string: "https://web.njit.edu/~ss2773/uploads/uploads.php")
+    var fileExt = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
    self.itemDesc.delegate = self
@@ -128,8 +130,8 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
     func createBodyWithParameters( filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
         let body = NSMutableData();
         
-        
-        let filename = "user-profile.jpg"
+        fileExt = fileExt+1
+        let filename = "image\(fileExt)"
         
         let mimetype = "image/jpg"
         
