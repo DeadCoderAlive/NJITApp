@@ -14,16 +14,18 @@ class Station: NSObject, MKAnnotation {
     var longitude:Double
     var type : String
     var img : UIImage?
+    var BSU : String
     
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    init(latitude: Double, longitude: Double,title: String,type: String) {
+    init(latitude: Double, longitude: Double,title: String,type: String,BSU: String) {
         self.latitude = latitude
         self.longitude = longitude
         self.title = title
         self.type = type
+        self.BSU = BSU
     }
     
     var subtitle: String?{

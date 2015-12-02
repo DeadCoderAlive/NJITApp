@@ -11,12 +11,12 @@ import Foundation
 class GetPredictions {
     static var myDict : [String:String] = [:]
     static func getPred(route: String){
-        print("get Predictions function called for route: \(route)")
+        //print("get Predictions function called for route: \(route)")
         let url = "http://runextbus.herokuapp.com/route/\(route)"
         let data = NSData(contentsOfURL: NSURL(string: url)!)
         do{
             let JSONresult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray
-            print("!My JSON Result\(JSONresult)")
+            //print("!My JSON Result\(JSONresult)")
             for items in JSONresult!{
                 var min : String = ""
                 
@@ -39,7 +39,7 @@ class GetPredictions {
                 }
                 
             }
-            print(myDict)
+           // print(myDict)
             
         }catch let error as NSError{
             print(error)

@@ -70,6 +70,7 @@ class NJITMapView: UIViewController , MKMapViewDelegate,CLLocationManagerDelegat
         myMap.centerCoordinate = point2.coordinate
         myMap.delegate = self
         
+        
         //Span of the map
         myMap.setRegion(MKCoordinateRegionMake(point2.coordinate, MKCoordinateSpanMake(0.012,0.012)), animated: true)
         

@@ -1,7 +1,7 @@
 import UIKit
 import MapKit
 
-class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParserDelegate {
+class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParserDelegate,CLLocationManagerDelegate {
     
     @IBOutlet weak var myMap: MKMapView!
     var buslat = [Double]()
@@ -32,17 +32,32 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
     var retLon = [Double]()
     var retLat = [Double]()
     
+
+    var selectedLat = Double()
+    var selectedLon = Double()
+
+    
     var busAnnotation = [Station]()
     var busOrstop : Bool = false
     
     
     override func viewDidLoad() {
         myMap.delegate = self
+        
+        setUserPin()
         zoomToRegion()
+        
         getLatLon(mapSelect)
         let annotation = getAnnotationStop(stopLatArr, lon: stopLonArr, tit: stopTitleArr)
        // print("\(stopTitleArr))")
         myMap.addAnnotations(annotation)
+        
+        let PostButton : UIBarButtonItem = UIBarButtonItem(title: "Get Direction", style: UIBarButtonItemStyle.Plain, target: self, action:Selector("popToPost:"))
+        
+        
+        self.navigationItem.rightBarButtonItem = PostButton
+        
+        //setUserPin()
         super.viewDidLoad()
         startTimer()
     }
@@ -50,6 +65,42 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
     override func viewDidDisappear(animated: Bool) {
         timer?.invalidate()
     }
+    let locationManager = CLLocationManager()
+    var sourLat = Double()
+    var sourLong = Double()
+
+    func setUserPin(){
+        locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            print("Authenticated")
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    var cnt = 0
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if cnt == 0
+        {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        sourLat = locValue.latitude
+        sourLong = locValue.longitude
+        locationManager.stopUpdatingLocation()
+        
+        //let point1 = MKPointAnnotation()
+        //point1.coordinate = CLLocationCoordinate2DMake(sourLat!,sourLong!)
+        //point1.title = "Your Are Here"
+        let annot = Station(latitude: sourLat, longitude: sourLong,title: "Your Are Here",type: "",BSU: "user")
+       // print("adding user location")
+        myMap.addAnnotation(annot)
+            cnt++
+        }
+    }
+
     
     var num = 0
     func startTimer()
@@ -94,11 +145,14 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
             if view == nil {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view?.canShowCallout = true
-                if annotation.title == "" {
+                if annotation.BSU == "user"{
+                    print("user")
+                    view?.image = UIImage(named: "img-user")
+                }else if annotation.BSU == "bus" {
                     print("bus")
                     view?.image = UIImage(named: "img-bus")
-                }else{
-                    print("stop")
+                }else if annotation.BSU == "stop"{
+                    print("stop \(annotation.title)")
                     view?.image = UIImage(named: "img-stop")
                 }
             }
@@ -111,25 +165,33 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer! {
         if overlay is MKPolyline {
+            if !getDirectionSet
+            {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.blueColor()
             polylineRenderer.lineWidth = 3
             return polylineRenderer
+            } else{
+                let myLineRenderer = MKPolylineRenderer(polyline: (myRoute?.polyline)!)
+                myLineRenderer.strokeColor = UIColor.orangeColor()
+                myLineRenderer.lineWidth = 5
+                return myLineRenderer
+            }
         }
         
         return nil
     }
     
-    /*func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-    let latFromPin = view.annotation!.coordinate.latitude
-    let lonFromPin = view.annotation!.coordinate.longitude
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    selectedLat = view.annotation!.coordinate.latitude
+    selectedLon = view.annotation!.coordinate.longitude
     let title = view.annotation!.title
-    //print(latFromPin)
-    //print(lonFromPin)
+    print(selectedLat)
+    print(selectedLon)
     print(title)
-    print(view.annotation)
+    //print(view.annotation)
     //print("ANnotation clicked")
-    }*/
+    }
     
     
     func zoomToRegion() {
@@ -148,8 +210,8 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
         for var index = 0; index < lat.count; ++index
         {
             
-            let annot = Station(latitude: lat[index], longitude: lon[index],title: "",type: "")
-            annot.title = "\(lat[index])  \(lon[index])"
+            let annot = Station(latitude: lat[index], longitude: lon[index],title: "",type: "",BSU: "line")
+            //annot.title = "\(lat[index])  \(lon[index])"
             annotaions.append(annot)
             
         }
@@ -160,7 +222,7 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
         var annotaions: Array = [Station]()
         for var index = 0; index < lat.count; ++index
         {
-            let annot = Station(latitude: lat[index], longitude: lon[index],title: tit[index],type: "Bus in:\(GetPredictions.myDict[tit[index]]!)")
+            let annot = Station(latitude: lat[index], longitude: lon[index],title: tit[index],type: "Bus in:\(GetPredictions.myDict[tit[index]]!)",BSU: "stop")
             annotaions.append(annot)
             
             
@@ -175,7 +237,7 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
         for var index = 0; index < lat.count; ++index
         {
             
-            let annot = Station(latitude: lat[index], longitude: lon[index],title: "", type: "")
+            let annot = Station(latitude: lat[index], longitude: lon[index],title: "", type: "",BSU: "bus")
             annotaions.append(annot)
             
         }
@@ -201,7 +263,7 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
         ename = elementName
         if elementName == "route"
         {
-            print(elementName)
+            //print(elementName)
             routeTitle = attributeDict["title"]! as String
             if routeTitle == map{
                 routeTag = attributeDict["tag"]! as String
@@ -270,8 +332,27 @@ class ShuttleMapViewController: UIViewController, MKMapViewDelegate, NSXMLParser
             
         }
     }
+    var getDirectionSet = false
+    var myRoute : MKRoute?
     
-    
-    
+    func popToPost(sender: UIBarButtonItem!) {
+        getDirectionSet = true
+        print("\(sourLat) & \(sourLong) to \(selectedLat) & \(selectedLon)")
+        let directionsRequest = MKDirectionsRequest()
+        let markTaipei = MKPlacemark(coordinate: CLLocationCoordinate2DMake(sourLat, sourLong), addressDictionary: nil)
+        let markChungli = MKPlacemark(coordinate: CLLocationCoordinate2DMake(selectedLat, selectedLon), addressDictionary:nil)
+        
+        directionsRequest.source = MKMapItem(placemark: markChungli)
+        directionsRequest.destination = MKMapItem(placemark: markTaipei)
+        directionsRequest.transportType = MKDirectionsTransportType.Walking
+        let directions = MKDirections(request: directionsRequest)
+        directions.calculateDirectionsWithCompletionHandler( { (response,error) -> Void in
+            if error == nil {
+                self.myRoute = response!.routes[0]
+                self.myMap.addOverlay((self.myRoute?.polyline)!)
+            }
+        })
+
+    }
     
 }
