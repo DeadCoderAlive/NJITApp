@@ -45,6 +45,14 @@ class PostBooksViewController: UIViewController,UIImagePickerControllerDelegate,
         var z = x + " for $" + y
         postJSON(userName.text!,useremail: userEmail.text!,bookname: z,bookdescription: bookDescription.text!)
         
+        let mailAlert = UIAlertView(title: "Post Success", message: "Your book data successfully updated in database!!!", delegate: self, cancelButtonTitle: "Done")
+        mailAlert.show()
+        self.bookCost.text = ""
+        self.bookDescription.text = ""
+        self.bookName.text  = ""
+        self.userEmail.text = ""
+        self.userName.text = ""
+        
     }
     
   

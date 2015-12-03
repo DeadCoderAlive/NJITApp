@@ -38,9 +38,38 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
     
     @IBAction func Save(sender: AnyObject) {
         //
-       
+        if(userName.text!.isEmpty || userEmail.text!.isEmpty || ItemName.text!.isEmpty || itemDesc.text!.isEmpty || imageWindow.image == nil) {
+            let alertController = UIAlertController(title: "Incomplete form", message: "fill out the blank fields", preferredStyle: .Alert)
+            let compAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(compAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        else if(!isValidEmail(userEmail.text!)) {
+            let alertController = UIAlertController(title: "Not a Valid Email", message: "Please Enter a valid Email address", preferredStyle: .Alert)
+            let compAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(compAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+        else {
         postJSON(userName.text!,useremail: userEmail.text!,itemname: ItemName.text!,itemdesc: itemDesc.text!)
-        imageUploadRequest(imageView: imageWindow, uploadUrl: url!)
+        imageUploadRequest(imageView: imageWindow, uploadUrl: url!,filename: userName.text!)
+       //     self.performSegueWithIdentifier("toLostView", sender: self )
+            
+            let alert = UIAlertController(title: "Success", message: "Posted Successfully!!!", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(action)
+            presentViewController(alert, animated: true, completion: nil)
+            self.imageWindow.image = nil
+            self.imageWindow.setNeedsDisplay()
+            self.itemDesc.text = ""
+            self.ItemName.text = ""
+            self.userEmail.text = ""
+            self.userName.text = ""
+            
+            
+            
+            
+        }
     }
 
     /*
@@ -72,7 +101,7 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
     
     
     
-     func imageUploadRequest(imageView imageView: UIImageView, uploadUrl: NSURL) {
+    func imageUploadRequest(imageView imageView: UIImageView, uploadUrl: NSURL,filename: String) {
         
        
         
@@ -87,7 +116,7 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
         
         if(imageData==nil)  { return; }
         
-        request.HTTPBody = createBodyWithParameters( "file", imageDataKey: imageData!, boundary: boundary)
+        request.HTTPBody = createBodyWithParameters( "file", imageDataKey: imageData!, boundary: boundary,filename: filename)
         
         //myActivityIndicator.startAnimating();
         
@@ -127,11 +156,9 @@ class PostLostItemViewController: UIViewController,UIImagePickerControllerDelega
     }
     
     
-    func createBodyWithParameters( filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
+    func createBodyWithParameters( filePathKey: String?, imageDataKey: NSData, boundary: String,filename: String) -> NSData {
         let body = NSMutableData();
         
-        fileExt = fileExt+1
-        let filename = "image\(fileExt)"
         
         let mimetype = "image/jpg"
         
@@ -160,21 +187,26 @@ extension NSMutableData {
     }
 }
 
-func saveImage() {
+func isValidEmail(testStr:String) -> Bool {
+    // println("validate calendar: \(testStr)")
+    let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
     
+    let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    return emailTest.evaluateWithObject(testStr)
 }
 
        //
     func postJSON(username: String!,useremail: String!,itemname: String!,itemdesc: String!) {
         let myUrl = NSURL(string: "https://web.njit.edu/~ss2773/postlostfound.php")
+        let imageUrl = "https://web.njit.edu/~ss2773/uploads/uploads/"+username
+
         let request = NSMutableURLRequest(URL:myUrl!)
         request.HTTPMethod = "POST"
-        let postString = "username='\(username)'&useremail='\(useremail)'&itemname='\(itemname)'&itemdesc='\(itemdesc)'"
+        let postString = "username='\(username)'&useremail='\(useremail)'&itemname='\(itemname)'&itemdesc='\(itemdesc)'&imageurl='\(imageUrl)'"
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request,completionHandler: {data,response, error ->
             Void in
             //print("data: \(data)")
-            
             do{
     
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSArray

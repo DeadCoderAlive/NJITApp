@@ -35,6 +35,9 @@ class DateSelectAtheleticViewController: UIViewController, MFMailComposeViewCont
         print(dateChoosed)
         date.text = dateChoosed
         selectedOption.text = "\(choice)"
+        toTimePicker.setValue(UIColor.whiteColor(), forKey: "textColor")
+        fromTimePicker.setValue(UIColor.whiteColor(), forKey: "textColor")
+
 	
     }
 
@@ -80,7 +83,7 @@ class DateSelectAtheleticViewController: UIViewController, MFMailComposeViewCont
         mailCompose.setSubject("Reg: Appointment")
         if AthOrPro == "Athletic Center"{
            
-            mailCompose.setMessageBody("Hi Could you please set up an appointment from \(temp1) to \(temp2) on \(dateChoosed)", isHTML: false)
+            mailCompose.setMessageBody("Hi Could you please set up an appointment from \(temp1) to \(temp2) on \(dateChoosed) for \(choice) court", isHTML: false)
         }else{
             mailCompose.setMessageBody("Hi Professor, Could you please set up an appointment from \(temp1) to \(temp2) on \(dateChoosed)", isHTML: false)
         }

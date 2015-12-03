@@ -12,7 +12,8 @@ class StudentSceneViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        reachabilityStatusChanged()
+ NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
         // Do any additional setup after loading the view.
     }
 
@@ -21,6 +22,37 @@ class StudentSceneViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    override func viewDidAppear(animated: Bool) {
+       
+        
+    }
+    
+    func reachabilityStatusChanged()
+    {
+        if reachabilityStatus == kNOTREACHABLE
+        {
+            
+            var alert = UIAlertView()
+            alert.delegate = self
+            alert.title = "No Connectivity"
+            alert.message = "The internet connectivity is lost. Please restart the application."
+            alert.addButtonWithTitle("OK")
+            alert.show()
+            
+        }
+        else
+        {
+        }
+    }
+    
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+        exit(0)
+    }
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+    }
 
     /*
     // MARK: - Navigation

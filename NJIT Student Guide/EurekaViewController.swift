@@ -21,26 +21,47 @@ class EurekaViewController: UITableViewController,MFMailComposeViewControllerDel
     var itemDesc = [String]()
     var itemName = [String]()
     var userEmail = [String]()
-    let rest = RestCall()
+    var notPost = 1
+    var rest = RestCall()
   
     
        override func viewDidLoad() {
         
-        rest.getJSON("https://web.njit.edu/~ts336/LostAndFound.php")
         super.viewDidLoad()
         
-        item_images = ["broadcast.png","Browse-Catalog-icon-1.png","building1X-1.png","PROFESSor.png","broadcast.png"]
-        
-        let PostButton : UIBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action:Selector("popToPost:"))
+        //let PostButton : UIBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action:Selector("popToPost:"))
+        loadData()
+        notPost = 0
        
-       
-        self.navigationItem.rightBarButtonItem = PostButton
+        //self.navigationItem.rightBarButtonItem = PostButton
             }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidLoad()
+        
+        if(notPost == 0)
+     {
+        notPost = 1
+     }
+     else if (notPost == 1){
+        rest = RestCall()
+        loadData()
+        self.tableView.reloadData()
+        notPost = 0
+        }
+    }
+    
+    
+    func loadData()
+    {
+        rest.getJSON("https://web.njit.edu/~ts336/LostAndFound.php")
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -61,7 +82,7 @@ class EurekaViewController: UITableViewController,MFMailComposeViewControllerDel
             as! EurekaTableControllerCell
         let row = indexPath.row
         cell.profile_name.text = rest.profileName[row]
-        cell._image.image = UIImage(named: item_images[0])
+        cell._image.image = UIImage(data: NSData(contentsOfURL: NSURL(string: rest.imageUrl[row])!)!)
         cell.found_item_name.text = rest.itemName[row]
         cell.item_Description.text = rest.itemDesc[row]
         

@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 class toDoPersist {
     let titleNameSpace = ToDoAtrributes.items.rawValue
+    var myData:ToDoModel!
     class var sharedInstance: toDoPersist {
         
         struct Singleton {
@@ -28,7 +29,9 @@ class toDoPersist {
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let record = NSEntityDescription.insertNewObjectForEntityForName("ToDoModel", inManagedObjectContext: context)
         record.setValue(items, forKey: "items")
+       
         record.setValue(tick, forKey: "tick")
+        
         
         do {
             try context.save()
@@ -62,4 +65,5 @@ class toDoPersist {
         return fetchedResults
     }
 
+   
 }

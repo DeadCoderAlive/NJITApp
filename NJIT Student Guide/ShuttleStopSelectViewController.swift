@@ -19,6 +19,17 @@ class ShuttleStopSelectViewController: UIViewController,UIPickerViewDataSource,U
         self.picker.dataSource = self
         super.viewDidLoad()
     }
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView
+    {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.whiteColor()
+        pickerLabel.text = pickerData[row]
+        // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
+        pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 25) // In this use your custom font
+        pickerLabel.textAlignment = NSTextAlignment.Center
+        return pickerLabel
+    }
+    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

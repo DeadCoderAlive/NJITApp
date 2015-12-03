@@ -13,14 +13,16 @@ class SetAppoinmentAtheleticViewController: UIViewController {
         print(optionChoosed)
         let date = NSDate()
         let formatter = NSDateFormatter()
+        datePick.setValue(UIColor.whiteColor(), forKey: "textColor")
+
         formatter.dateStyle = .ShortStyle
         datetimechoosed = formatter.stringFromDate(date)
         datePick.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+      
         }
-    
+
     
     func handleDatePicker(sender : UIDatePicker){
-        
         datePick.minimumDate = NSDate()
         let dateformatter = NSDateFormatter()
         dateformatter.dateStyle = NSDateFormatterStyle.ShortStyle

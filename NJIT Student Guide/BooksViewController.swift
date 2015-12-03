@@ -14,13 +14,14 @@ class BooksViewController: UITableViewController,MFMailComposeViewControllerDele
     var bookDescription = [String]()
     var bookName = [String]()
     var userEmail = [String]()
-    let rest1 = RestCall1()
-    
+    var rest1 = RestCall1()
+    var notpost = 1
     
     override func viewDidLoad() {
         self.title = "Buy & Sell Books"
-        rest1.getJSON("https://web.njit.edu/~au56/getbooks.php")
-        super.viewDidLoad()
+                super.viewDidLoad()
+        loadData()
+        notpost = 0
         
        let PostButton : UIBarButtonItem = UIBarButtonItem(title: "Sell", style: UIBarButtonItemStyle.Plain, target: self, action:Selector("postBooks:"))
         
@@ -31,6 +32,10 @@ class BooksViewController: UITableViewController,MFMailComposeViewControllerDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    func loadData() {
+        rest1.getJSON("https://web.njit.edu/~au56/getbooks.php")
+
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -60,7 +65,19 @@ class BooksViewController: UITableViewController,MFMailComposeViewControllerDele
     }
     
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidLoad()
+        if(notpost == 0)
+        {
+            notpost = 1
+        }
+        else if (notpost == 1){
+            rest1 = RestCall1()
+            loadData()
+            self.tableView.reloadData()
+            notpost = 0
+        }
+    }
     
     
     

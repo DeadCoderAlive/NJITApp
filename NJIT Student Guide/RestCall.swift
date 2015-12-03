@@ -13,6 +13,7 @@ class RestCall {
     var itemDesc = [String]()
     var itemName = [String]()
     var userEmail = [String]()
+    var imageUrl = [String]()
     
     func getJSON(url: String) {
         let data = NSData(contentsOfURL: NSURL(string: url)!)
@@ -29,6 +30,7 @@ class RestCall {
                 self.itemDesc.append(data["itemDescription"] as! String)
                 self.itemName.append(data["foundItemName"] as! String)
                 self.userEmail.append(data["userEmail"] as! String)
+                self.imageUrl.append(data["imageUrl"] as! String)
                 i = i+1
                 
             }

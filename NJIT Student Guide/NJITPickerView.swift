@@ -59,7 +59,7 @@ class NJITPickerView: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView
     {
         var pickerLabel = UILabel()
-        pickerLabel.textColor = UIColor.blackColor()
+        pickerLabel.textColor = UIColor.whiteColor()
         pickerLabel.text = dataArr[row]
         // pickerLabel.font = UIFont(name: pickerLabel.font.fontName, size: 15)
         pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 15) // In this use your custom font

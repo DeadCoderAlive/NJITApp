@@ -45,6 +45,7 @@ class AcademicListViewController: UITableViewController {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         searchActive = false;
     }
     
